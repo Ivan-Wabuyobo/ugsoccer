@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+<div class="col-md-8">
+    <h3>{{post.title}}</h3>
+<hr>
+<small>
+    {{post.created_on.date}}
+</small>
+<p>{{post.body}}</p>
+<h4>Comments.</h4>
+<ul>
+{% for comment in comments%}
+    <li>{{comment}}</li>
+{% empty %}
+    <li>Be the first to comment</li>
+{% endfor %}
+</ul>
+<form action="{%url 'blog_detail' post.pk%}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="author" class='form-control' placeholder="Your name">
+    <textarea required name="comment" class='form-control' cols="15" rows="5" placeholder="Leave a comment!!!" style="margin-top: 20px;"></textarea>
+    <input type="submit" value="Comment" class="btn-info" style="margin-top: 20px; border-radius: 5px;">
+</form>
+{% endblock %}

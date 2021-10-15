@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4 class="login_header">login to continue</h4>
+<div class="container login_form col-md-6" >
+<form method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Login" class="btn btn-info" style="border-radius: 10px;">
+    <button class="btn btn-info reset_button"><a href="{%url 'password_reset' %}" style='text-decoration: none;'>Forgot password</a></button>
+</form>
+</div>
+{% endblock %}

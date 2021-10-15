@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="container">
+    <h3>{{posts.category.name}} News</h3>
+<div class="row" style="margin-top: 70px;">
+    {% for post in posts %}
+    <div class="col-md-4 post">
+        <h2>{{post.title}}</h2>
+        <small>{{post.created_on}}</small>
+        <p>{{post.body | slice:'400'}} <a href="{%url 'blog_detail' post.pk%}" style="text-decoration: none;">...see more</a></p>
+    </div>
+    {% empty %}
+        <div>Sorry we don't have any posts yet, they will be coming soon</div>
+    {% endfor %}
+</div>
+</div>
+{%endblock%}
